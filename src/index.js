@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Layout from './components/Layout';
+import App from './components/containers/App';
 
 
 const app = (
-    <Layout/>
+    <App/>
 )
 
 ReactDOM.render(app, document.getElementById('root'))
