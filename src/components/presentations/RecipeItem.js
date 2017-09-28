@@ -14,18 +14,22 @@ class RecipeItem extends React.Component {
       <div className="card border-danger mb-3">
         <div className="card-body text-secondary">
           <div className="row">
-            <div className="col">
+            <div className="col ml-3">
               <div>
-                <h4 className="card-title">{recipe.name}</h4>
-                <p className="card-text">{recipe.ingred}</p>
+                <h4 className="card-title display-4 mb-4 mt-4">{recipe.name}</h4>
+                <br/>
+                <p className="card-text lead mt-2">{recipe.ingred}</p>
                 <p>id : {recipe.id}</p>
+                <div className ="row">
                 <EditRecipeModal recipe = {this.props.recipe} fetcEditRecipe={this.props.fetcEditRecipe}/>
                 <button type="button" className="btn btn-danger"
                 onClick = {this.handleClick.bind(this)}>Delete</button>
+                </div>
               </div>
             </div>
             <div className="col">
-              <div>
+              <div
+                className = "text-center">
                 <img
                   src={recipe.image}
                   style={{

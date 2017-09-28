@@ -9,7 +9,7 @@ class EditRecipeModal extends React.Component {
     const recipe = props.recipe;
     this.state = {
       modalIsOpen: false,
-      
+      changedImage : false,
       recipe: {
         id : recipe.id,
         name: recipe.name,
@@ -39,7 +39,7 @@ class EditRecipeModal extends React.Component {
     let newRecipe = Object.assign({}, this.state.recipe)
     newRecipe.image = files[0]
     this.setState({recipe: newRecipe})
-
+    this.setState({changedImage: true})
   }
 
   handleChange(nameOrIngred, e) {
@@ -57,15 +57,16 @@ class EditRecipeModal extends React.Component {
     }
     this
       .props
-      .fetcEditRecipe(this.state.recipe)
+      .fetcEditRecipe(this.state.recipe, this.state.changedImage)      
     this.closeModal()
+    this.setState({changedImage: false})
   }
 
   render() {
 
     return (
       <div>
-        <button className = "btn-outline-warning lead"onClick={this.openModal}>Edit</button>
+        <button className = "btn-outline-warning lead"onClick={this.openModal}>Edit{this.state.recipe.id}</button>
         <Modal
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal}

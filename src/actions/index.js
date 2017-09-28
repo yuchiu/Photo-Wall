@@ -37,6 +37,7 @@ let actions = {
     fetchNewRecipe: (newRecipe) => {
         return (dispatch) => {
             console.log('inside actions, fetchSave, received : ' + JSON.stringify(newRecipe))
+            //if recipe contain image upload to cloudinary, then fetch to firebase
             if (newRecipe.image !== '') {
                 let uploadRequest = superagent.post(url)
                 uploadRequest.attach('file', newRecipe.image).field(params).end((err, resp) => {
@@ -51,7 +52,9 @@ let actions = {
                         .set(newRecipe)
                     dispatch(actions.fetchRecipeList({}))
                 })
-            }else{
+            }
+            //if recipe has no image, fetch to firebase
+            else{
                 newRecipe.id = firebase.database().ref().push().key
                 fbApp
                     .database()
@@ -62,14 +65,17 @@ let actions = {
 
         }
     },
-    fetcEditRecipe: (editedRecipe) => {
+
+    //errr------if recipe has photo uploaded, user can't end the recipe without uploading pic
+    fetcEditRecipe: (editedRecipe,  imgIsChanged) => {
+        console.log('fetched edit recipe '+ editedRecipe,  imgIsChanged)
         return (dispatch) => {
-            console.log('inside actions, fetcEditRecipe, received : ' + JSON.stringify(editedRecipe))
+            if (imgIsChanged){
+                console.log('inside actions, fetcEditRecipe  image is changed : ' + JSON.stringify(editedRecipe))
             let uploadRequest = superagent.post(url)
             uploadRequest.attach('file', editedRecipe.image).field(params).end((err, resp) => {
                 if (err) {
                     console.log(err, null)
-                    return
                 }
                 editedRecipe.image = resp.body.secure_url
                 fbApp
@@ -78,9 +84,20 @@ let actions = {
                     .set(editedRecipe)
                 dispatch(actions.fetchRecipeList({}))
             })
+        }else{
+            console.log('in edited Recipe, no image was uploaded to editedRecipe, :'+editedRecipe)
+            editedRecipe.image = ''
+            fbApp
+                .database()
+                .ref(path + '/' + editedRecipe.id)
+                .set(editedRecipe)
+            dispatch(actions.fetchRecipeList({}))
+
+        }
 
         }
     },
+    //issue with delete, after fetch delete the id of edit shift one place
     fetchDeleteRecipe: (id) => {
         return (dispatch) => {
             console.log('inside actions, deleteRecipe, received id : ' + id)
@@ -110,7 +127,7 @@ let actions = {
                     }
                     dispatch({
                         type: constants.FETCH_RECIPE_LIST,
-                        payload: dataArr.reverse()
+                        payload: dataArr
                     })
                 })
         }
