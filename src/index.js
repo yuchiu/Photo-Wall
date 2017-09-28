@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 
 import {Provider} from 'react-redux'
 import store from './store'
-import App from './components/containers/App';
+import Layout from './components/containers/Layout';
 
 const app = (
   <Provider store={store.createStore()}>
-    <App/>
+    <Layout/>
   </Provider>
 )
 
