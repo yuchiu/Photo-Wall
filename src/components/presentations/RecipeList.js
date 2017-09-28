@@ -1,6 +1,5 @@
 import React from 'react'
 import RecipeItem from './RecipeItem'
-import {connect} from 'react-redux'
 
 class RecipeList extends React.Component {
 
@@ -23,12 +22,4 @@ class RecipeList extends React.Component {
 
 }
 
-const stateToProps = (state) => {
-  return {recipes: state.recipes}
-}
-
-const dispatchToProps = (dispatch) => {
-  return {}
-}
-
-export default connect(stateToProps, dispatchToProps)(RecipeList)
+export default RecipeList

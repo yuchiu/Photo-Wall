@@ -34,7 +34,7 @@ const fbApp = firebase.initializeApp({
 const path = Base64.encode(window.location.href) + '/recipes'
 
 let actions = {
-    fetchSave: (newRecipe, length) => {
+    fetchNewRecipe: (newRecipe) => {
         return (dispatch) => {
             console.log('inside actions, fetchSave, received : ' + JSON.stringify(newRecipe))
             let uploadRequest = superagent.post(url)
@@ -44,10 +44,11 @@ let actions = {
                     return
                 }
                 newRecipe.image = resp.body.secure_url
+                newRecipe.id = firebase.database().ref().push().key
                 fbApp
                     .database()
-                    .ref(path + '/' + length)
-                    .set(newRecipe)
+                    .ref(path)
+                    .push(newRecipe)
                 dispatch(actions.fetchRecipeList({}))
             })
 
@@ -59,15 +60,22 @@ let actions = {
                 .database()
                 .ref(path)
                 .on('value', (snapshot) => {
-                    const data = snapshot.val()
-                    console.log('inside actions, recipe list updated' + JSON.stringify(data))
-                    if (data == null) {
-                        console.log('data == null')
+
+                    let returnArr = [];
+                    
+                        snapshot.forEach(childSnapshot => {
+                            let item = childSnapshot.val(); 
+                            item.key = childSnapshot.key;
+                            returnArr.push(item);
+                        });
+                    console.log('inside actions, recipe list updated'+ JSON.stringify(returnArr) )
+                    if (returnArr == []) {
+                        console.log('data == []')
                         return
                     }
                     dispatch({
                         type: constants.FETCH_RECIPE_LIST,
-                        payload: data.reverse()
+                        payload: returnArr.reverse()
                     })
                 })
 

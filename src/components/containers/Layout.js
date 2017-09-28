@@ -19,8 +19,8 @@ class Layout extends React.Component {
   render() {
     return (
       <Grid>
-        <Header recipes = {this.props.recipes} fetchSave ={this.props.fetchSave}/>
-        <RecipeList/>
+        <Header fetchNewRecipe ={this.props.fetchNewRecipe}/>
+        <RecipeList recipes = {this.props.recipes}/>
 
       </Grid>
     )
@@ -32,8 +32,8 @@ const stateToProps = (state) => {
 }
 const dispatchToProps = (dispatch) => {
   return {
-    fetchSave: (newRecipe, length) => {
-      dispatch(actions.fetchSave(newRecipe, length))
+    fetchNewRecipe: (newRecipe) => {
+      dispatch(actions.fetchNewRecipe(newRecipe))
     },
     fetchRecipeList: () => {
       dispatch(actions.fetchRecipeList())

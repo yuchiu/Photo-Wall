@@ -3,12 +3,13 @@ import Dropzone from 'react-dropzone'
 import Modal from 'react-modal';
 
 
-class AddRecipe extends React.Component {
+class AddRecipeModal extends React.Component {
   constructor() {
     super();
     this.state = {
       modalIsOpen: false,
       recipe: {
+        id : '',
         name: '',
         ingred: '',
         image: ''
@@ -16,9 +17,6 @@ class AddRecipe extends React.Component {
     }
     this.openModal = this
       .openModal
-      .bind(this);
-    this.afterOpenModal = this
-      .afterOpenModal
       .bind(this);
     this.closeModal = this
       .closeModal
@@ -29,11 +27,6 @@ class AddRecipe extends React.Component {
     this.setState({modalIsOpen: true});
   }
 
-  afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    this.subtitle.style.color = '#f00';
-  }
-
   closeModal() {
     this.setState({modalIsOpen: false});
   }
@@ -41,7 +34,6 @@ class AddRecipe extends React.Component {
     console.log(files)
     let newRecipe = Object.assign({}, this.state.recipe)
     newRecipe.image = files[0]
-
     this.setState({recipe: newRecipe})
 
   }
@@ -54,17 +46,19 @@ class AddRecipe extends React.Component {
   }
 
   handleClick() {
-    console.log('save! name and ingredients: ' + JSON.stringify(this.state.recipe) + ' img :' + JSON.stringify(this.state.image))
+    console.log('save! name and ingredients: ' + JSON.stringify(this.state.recipe))
     this
       .props
-      .fetchSave(this.state.recipe, this.props.recipes.recipes.length)
+      .fetchNewRecipe(this.state.recipe)
     this.setState({
       recipe: {
+        id: '',
         name: '',
         ingred: '',
         image: ''
       }
     })
+    this.closeModal()
   }
 
   render() {
@@ -74,7 +68,6 @@ class AddRecipe extends React.Component {
         <button className = "btn-outline-warning lead"onClick={this.openModal}>Add New Recipe</button>
         <Modal
           isOpen={this.state.modalIsOpen}
-          onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
           style={styles}
           contentLabel="Example Modal">
@@ -127,4 +120,4 @@ const styles = {
   }
 };
 
-export default AddRecipe;
+export default AddRecipeModal;

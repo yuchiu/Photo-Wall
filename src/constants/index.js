@@ -1,4 +1,3 @@
 export default {
-    FETCH_SAVE : 'FETCH_SAVE',
     FETCH_RECIPE_LIST : 'FETCH_RECIPE_LIST'
 }

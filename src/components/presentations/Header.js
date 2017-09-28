@@ -11,7 +11,7 @@ class Header extends React.Component {
         </h1>
         <div className="col-md-12 row lead  justify-content-center">
           <p>Recipe for LIFE! Upload your favorite recipe here!</p>
-          <AddRecipeModal recipes = {this.props.recipes}  fetchSave ={this.props.fetchSave}/>
+          <AddRecipeModal fetchNewRecipe ={this.props.fetchNewRecipe}/>
         </div>
       </div>
     )
