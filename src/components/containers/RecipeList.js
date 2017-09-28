@@ -4,16 +4,31 @@ import {connect} from 'react-redux'
 
 class RecipeList extends React.Component {
 
+
   render() {
     return (
       <div>
         <div>
-        RecipeList
-        <RecipeItem/>
+          {this
+            .props
+            .recipes
+            .recipes
+            .map((recipe, i) => {
+              return <RecipeItem key={i} recipe={recipe}/>
+            })}
         </div>
       </div>
     )
   }
 
 }
+
+const stateToProps = (state) => {
+  return {recipes: state.recipes}
+}
+
+const dispatchToProps = (dispatch) => {
+  return {}
+}
+
 export default connect(stateToProps, dispatchToProps)(RecipeList)

@@ -2,7 +2,7 @@ import React from 'react'
 import Dropzone from 'react-dropzone'
 import {Grid, Modal} from 'react-bootstrap'
 
-import Header from '../presentations/Header'
+import Header from './Header'
 import RecipeList from './RecipeList'
 
 import {connect} from 'react-redux'
@@ -19,6 +19,12 @@ class App extends React.Component {
       }
     }
   }
+  componentDidMount(){
+    this
+      .props
+      .fetchRecipeList()
+  }
+
   uploadeFile(files) {
     let newRecipe = Object.assign({}, this.state.recipe)
     newRecipe.image =  files[0]
@@ -36,7 +42,7 @@ class App extends React.Component {
 
   handleClick() {
     console.log('save! name and ingredients: ' + JSON.stringify(this.state.recipe) + ' img :' + JSON.stringify(this.state.image))
-    this.props.fetchSave(this.state.recipe)
+    this.props.fetchSave(this.state.recipe, this.props.recipes.recipes.length)
   }
 
   render() {
@@ -44,7 +50,6 @@ class App extends React.Component {
       <Grid>
         <Header/>
         <RecipeList/>
-        <button type="button" className="btn btn-danger">Add Recipe</button>
         <br/>
         <input
           value={this.state.name}
@@ -67,13 +72,13 @@ class App extends React.Component {
             .uploadeFile
             .bind(this)}/>
         </div>
-
-        <button
-          onClick={this
-          .handleClick
-          .bind(this)}
-          className="btn btn-primary"
-          type="button">Save</button>
+      <button
+        onClick={this
+        .handleClick
+        .bind(this)}
+        className="btn btn-primary ripple"
+        type="button">New Recipe!
+     </button>
 
       </Grid>
     )
@@ -85,9 +90,11 @@ const stateToProps = (state) => {
 }
 const dispatchToProps = (dispatch) => {
   return {
-
-    fetchSave: (recipe) => {
-      dispatch(actions.fetchSave(recipe))
+    fetchSave: (newRecipe, length) => {
+      dispatch(actions.fetchSave(newRecipe, length))
+    },
+    fetchRecipeList: () => {
+      dispatch(actions.fetchRecipeList())
     }
   }
 

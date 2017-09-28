@@ -3,6 +3,7 @@ import React from 'react'
 class RecipeItem extends React.Component {
 
   render() {
+    const recipe = this.props.recipe
 
     return (
       <div className="card border-danger mb-3">
@@ -10,9 +11,8 @@ class RecipeItem extends React.Component {
           <div className="row">
             <div className="col">
               <div>
-                <h4 className="card-title">Primary card title</h4>
-                <p className="card-text">Some quick example text to build on the card title and
-                  make up the bulk of the card's content.</p>
+                <h4 className="card-title">{recipe.name}</h4>
+                <p className="card-text">{recipe.ingred}</p>
 
                 <button type="button" className="btn btn-info">Edit</button>
                 <button type="button" className="btn btn-danger">Delete</button>
@@ -21,7 +21,7 @@ class RecipeItem extends React.Component {
             <div className="col">
               <div>
                 <img
-                  src="https://res.cloudinary.com/dushlwfma/image/upload/v1506570400/b73bszj6rpavfxiihehl.jpg"
+                  src={recipe.image}
                   style={{
                   height: 300
                 }}/>

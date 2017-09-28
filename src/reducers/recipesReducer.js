@@ -7,9 +7,9 @@ let initialState = {
 export default (state = initialState, action)=>{
     let newState = Object.assign({}, state)
     switch(action.type){
-        case (constants.FETCH_SAVE):        
-        newState.recipes.push(action.payload)
-        console.log('inside reducer, FETCH_SAVE, newState : ' + JSON.stringify(newState.recipes))
+        case (constants.FETCH_RECIPE_LIST):        
+        newState.recipes= action.payload
+        console.log('inside reducer, FETCH_SAVE, newState : ' + JSON.stringify(action.payload))
         return newState
 
         default :

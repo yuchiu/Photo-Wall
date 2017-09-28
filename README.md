@@ -1,6 +1,7 @@
 # My React Template
 
-Hot loading enabled, CSS postfixer and prefixer enabled, ready to run on localhost.
+Recipe Upload App w/ React Redux Firebase
+
 
 ### Usage 
 #### 1. First install package cross-env globally
