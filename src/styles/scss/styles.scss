@@ -1,0 +1,8 @@
+@import 'var';
+@import 'mixins';
+#title {
+    padding: 30px;
+    font-size: 50px;
+    color: $deepblue;
+    text-align: center;
+}
