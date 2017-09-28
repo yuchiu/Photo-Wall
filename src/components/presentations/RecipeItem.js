@@ -18,9 +18,8 @@ class RecipeItem extends React.Component {
               <div>
                 <h4 className="card-title">{recipe.name}</h4>
                 <p className="card-text">{recipe.ingred}</p>
-                <p>{recipe.id}</p>
-
-                <EditRecipeModal recipe = {recipe}  id = {recipe.id} fetcEditRecipe={this.props.fetcEditRecipe}/>
+                <p>id : {recipe.id}</p>
+                <EditRecipeModal recipe = {this.props.recipe} fetcEditRecipe={this.props.fetcEditRecipe}/>
                 <button type="button" className="btn btn-danger"
                 onClick = {this.handleClick.bind(this)}>Delete</button>
               </div>

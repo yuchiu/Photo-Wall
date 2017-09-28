@@ -47,6 +47,10 @@ class AddRecipeModal extends React.Component {
 
   handleClick() {
     console.log('save! name and ingredients: ' + JSON.stringify(this.state.recipe))
+    if(this.state.recipe.name==''||this.state.recipe.ingred==''){
+      alert('Must fill out the name and ingredient')
+      return 
+    }
     this
       .props
       .fetchNewRecipe(this.state.recipe)

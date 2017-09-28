@@ -2,7 +2,6 @@ import React from "react";
 import Dropzone from 'react-dropzone'
 import Modal from 'react-modal';
 
-
 class EditRecipeModal extends React.Component {
   constructor(props) {
     super(props);
@@ -29,6 +28,7 @@ class EditRecipeModal extends React.Component {
 
   openModal() {
     this.setState({modalIsOpen: true});
+    console.log('edit current id is ' + JSON.stringify(this.state.recipe.id))
   }
 
   closeModal() {
@@ -51,6 +51,10 @@ class EditRecipeModal extends React.Component {
 
   handleClick() {
     console.log('save! name and ingredients: ' + JSON.stringify(this.state.recipe))
+    if(this.state.recipe.name==''||this.state.recipe.ingred==''){
+      alert('Must fill out the name and ingredient')
+      return 
+    }
     this
       .props
       .fetcEditRecipe(this.state.recipe)
@@ -114,6 +118,7 @@ const styles = {
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)'
   }
-};
+}
+
 
 export default EditRecipeModal;

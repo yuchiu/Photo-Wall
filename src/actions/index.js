@@ -37,20 +37,28 @@ let actions = {
     fetchNewRecipe: (newRecipe) => {
         return (dispatch) => {
             console.log('inside actions, fetchSave, received : ' + JSON.stringify(newRecipe))
-            let uploadRequest = superagent.post(url)
-            uploadRequest.attach('file', newRecipe.image).field(params).end((err, resp) => {
-                if (err) {
-                    console.log(err, null)
-                    return
-                }
-                newRecipe.image = resp.body.secure_url
+            if (newRecipe.image !== '') {
+                let uploadRequest = superagent.post(url)
+                uploadRequest.attach('file', newRecipe.image).field(params).end((err, resp) => {
+                    if (err) {
+                        console.log(err, null)
+                    }
+                    newRecipe.image = resp.body.secure_url
+                    newRecipe.id = firebase.database().ref().push().key
+                    fbApp
+                        .database()
+                        .ref(path + '/' + newRecipe.id)
+                        .set(newRecipe)
+                    dispatch(actions.fetchRecipeList({}))
+                })
+            }else{
                 newRecipe.id = firebase.database().ref().push().key
                 fbApp
                     .database()
-                    .ref(path+'/' + newRecipe.id )
+                    .ref(path + '/' + newRecipe.id)
                     .set(newRecipe)
                 dispatch(actions.fetchRecipeList({}))
-            })
+            }
 
         }
     },
@@ -66,7 +74,7 @@ let actions = {
                 editedRecipe.image = resp.body.secure_url
                 fbApp
                     .database()
-                    .ref(path+'/' + editedRecipe.id )
+                    .ref(path + '/' + editedRecipe.id)
                     .set(editedRecipe)
                 dispatch(actions.fetchRecipeList({}))
             })
