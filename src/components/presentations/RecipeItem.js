@@ -1,4 +1,5 @@
 import React from 'react'
+import EditRecipeModal from './EditRecipeModal'
 
 class RecipeItem extends React.Component {
 
@@ -17,8 +18,9 @@ class RecipeItem extends React.Component {
               <div>
                 <h4 className="card-title">{recipe.name}</h4>
                 <p className="card-text">{recipe.ingred}</p>
+                <p>{recipe.id}</p>
 
-                <button type="button" className="btn btn-info">Edit</button>
+                <EditRecipeModal recipe = {recipe}  id = {recipe.id} fetcEditRecipe={this.props.fetcEditRecipe}/>
                 <button type="button" className="btn btn-danger"
                 onClick = {this.handleClick.bind(this)}>Delete</button>
               </div>

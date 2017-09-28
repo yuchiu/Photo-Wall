@@ -54,6 +54,25 @@ let actions = {
 
         }
     },
+    fetcEditRecipe: (editedRecipe) => {
+        return (dispatch) => {
+            console.log('inside actions, fetcEditRecipe, received : ' + JSON.stringify(editedRecipe))
+            let uploadRequest = superagent.post(url)
+            uploadRequest.attach('file', editedRecipe.image).field(params).end((err, resp) => {
+                if (err) {
+                    console.log(err, null)
+                    return
+                }
+                editedRecipe.image = resp.body.secure_url
+                fbApp
+                    .database()
+                    .ref(path+'/' + editedRecipe.id )
+                    .set(editedRecipe)
+                dispatch(actions.fetchRecipeList({}))
+            })
+
+        }
+    },
     fetchDeleteRecipe: (id) => {
         return (dispatch) => {
             console.log('inside actions, deleteRecipe, received id : ' + id)
