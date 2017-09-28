@@ -2,6 +2,10 @@ import React from 'react'
 
 class RecipeItem extends React.Component {
 
+  handleClick (){
+    
+    this.props.fetchDeleteRecipe(this.props.recipe.id)
+  }
   render() {
     const recipe = this.props.recipe
 
@@ -15,7 +19,8 @@ class RecipeItem extends React.Component {
                 <p className="card-text">{recipe.ingred}</p>
 
                 <button type="button" className="btn btn-info">Edit</button>
-                <button type="button" className="btn btn-danger">Delete</button>
+                <button type="button" className="btn btn-danger"
+                onClick = {this.handleClick.bind(this)}>Delete</button>
               </div>
             </div>
             <div className="col">

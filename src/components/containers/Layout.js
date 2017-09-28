@@ -20,7 +20,7 @@ class Layout extends React.Component {
     return (
       <Grid>
         <Header fetchNewRecipe ={this.props.fetchNewRecipe}/>
-        <RecipeList recipes = {this.props.recipes}/>
+        <RecipeList recipes = {this.props.recipes} fetchDeleteRecipe={this.props.fetchDeleteRecipe}/>
 
       </Grid>
     )
@@ -37,6 +37,9 @@ const dispatchToProps = (dispatch) => {
     },
     fetchRecipeList: () => {
       dispatch(actions.fetchRecipeList())
+    },
+    fetchDeleteRecipe : (index)=>{
+      dispatch(actions.fetchDeleteRecipe(index))
     }
   }
 

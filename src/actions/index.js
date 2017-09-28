@@ -47,11 +47,21 @@ let actions = {
                 newRecipe.id = firebase.database().ref().push().key
                 fbApp
                     .database()
-                    .ref(path)
-                    .push(newRecipe)
+                    .ref(path+'/' + newRecipe.id )
+                    .set(newRecipe)
                 dispatch(actions.fetchRecipeList({}))
             })
 
+        }
+    },
+    fetchDeleteRecipe: (id) => {
+        return (dispatch) => {
+            console.log('inside actions, deleteRecipe, received id : ' + id)
+            fbApp
+                .database()
+                .ref(path + '/' + id)
+                .remove()
+            dispatch(actions.fetchRecipeList({}))
         }
     },
     fetchRecipeList: () => {
@@ -60,28 +70,24 @@ let actions = {
                 .database()
                 .ref(path)
                 .on('value', (snapshot) => {
-
-                    let returnArr = [];
-                    
-                        snapshot.forEach(childSnapshot => {
-                            let item = childSnapshot.val(); 
-                            item.key = childSnapshot.key;
-                            returnArr.push(item);
-                        });
-                    console.log('inside actions, recipe list updated'+ JSON.stringify(returnArr) )
-                    if (returnArr == []) {
+                    let dataArr = [];
+                    snapshot.forEach(childSnapshot => {
+                        let item = childSnapshot.val();
+                        item.key = childSnapshot.key;
+                        dataArr.push(item);
+                    });
+                    console.log('inside actions, recipe list updated' + JSON.stringify(dataArr))
+                    if (dataArr == []) {
                         console.log('data == []')
                         return
                     }
                     dispatch({
                         type: constants.FETCH_RECIPE_LIST,
-                        payload: returnArr.reverse()
+                        payload: dataArr.reverse()
                     })
                 })
-
         }
     }
-
 }
 
 export default actions
