@@ -4,7 +4,7 @@ Recipe and Image Upload App w/ React Redux Firebase
 
 ### Check out this site live on this [Link](http://recipe-app.surge.sh/) 
 
-![Demo](https://github.com/yuchiu/https://github.com/yuchiu/React-Redux-Recipe-App/blob/master/demo.gif)
+![Demo](https://github.com/yuchiu/React-Redux-Recipe-App/blob/master/demo2.gif)
 
 ## User Story
 
