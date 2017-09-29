@@ -8,6 +8,7 @@ class AddRecipeModal extends React.Component {
     super();
     this.state = {
       modalIsOpen: false,
+      isImgUploaded: false,
       imageIsDropped: 'Drop Image Here',
       recipe: {
         id: '',
@@ -35,6 +36,7 @@ class AddRecipeModal extends React.Component {
     let newRecipe = Object.assign({}, this.state.recipe)
     newRecipe.image = files[0]
     this.setState({recipe: newRecipe})
+    this.setState({isImgUploaded: true})
     this.setState({imageIsDropped: '✔ Image is saved.'})
   }
 
@@ -51,7 +53,7 @@ class AddRecipeModal extends React.Component {
     }
     this
       .props
-      .fetchNewRecipe(this.state.recipe)
+      .fetchNewRecipe(this.state.recipe, this.state.isImgUploaded)
     this.setState({
       recipe: {
         id: '',
@@ -61,8 +63,9 @@ class AddRecipeModal extends React.Component {
       },
       imageIsDropped: false
     })
-    this.setState({imageIsDropped: 'Drop Image Here'})
     this.closeModal()
+    this.setState({isImgUploaded: false})
+    this.setState({imageIsDropped: 'Drop Image Here'})
   }
 
   render() {

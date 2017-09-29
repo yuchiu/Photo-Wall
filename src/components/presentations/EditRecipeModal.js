@@ -10,7 +10,7 @@ class EditRecipeModal extends React.Component {
     const recipe = props.recipe;
     this.state = {
       modalIsOpen: false,
-      changedImage: false,
+      isImgUploaded: false,
       imageIsDropped: 'Drop Image Here',
       recipe: {
         id: recipe.id,
@@ -38,7 +38,7 @@ class EditRecipeModal extends React.Component {
     let newRecipe = Object.assign({}, this.state.recipe)
     newRecipe.image = files[0]
     this.setState({recipe: newRecipe})
-    this.setState({changedImage: true})
+    this.setState({isImgUploaded: true})
     this.setState({imageIsDropped: '✔ Image is saved.'})
   }
 
@@ -55,9 +55,9 @@ class EditRecipeModal extends React.Component {
     }
     this
       .props
-      .fetcEditRecipe(this.state.recipe, this.state.changedImage)
+      .fetcEditRecipe(this.state.recipe, this.state.isImgUploaded, this.props.recipe.id)
     this.closeModal()
-    this.setState({changedImage: false})
+    this.setState({isImgUploaded: false})
     this.setState({imageIsDropped: 'Drop Image Here'})
   }
 
@@ -65,7 +65,7 @@ class EditRecipeModal extends React.Component {
 
     return (
       <div>
-        <button className="ml-3 btn btn-info lead mr-3" onClick={this.openModal}>Edit Recipe</button>
+        <button className="ml-3 btn btn-info lead mr-3" onClick={this.openModal}>Edit Recipe{this.props.recipe.id}</button>
         <Modal
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal}

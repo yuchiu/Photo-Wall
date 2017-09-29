@@ -34,10 +34,10 @@ const fbApp = firebase.initializeApp({
 const path = Base64.encode(window.location.href) + '/recipes'
 
 let actions = {
-    fetchNewRecipe: (newRecipe) => {
+    fetchNewRecipe: (newRecipe, isImgUploaded) => {
         return (dispatch) => {
             //if recipe contain image upload to cloudinary, then fetch to firebase
-            if (newRecipe.image !== '') {
+            if (isImgUploaded) {
                 let uploadRequest = superagent.post(url)
                 uploadRequest.attach('file', newRecipe.image).field(params).end((err, resp) => {
                     if (err) {
@@ -66,33 +66,15 @@ let actions = {
         }
     },
 
-    fetcEditRecipe: (editedRecipe, imgIsChanged) => {
+    fetcEditRecipe: (editedRecipe, isImgUploaded, id) => {
+
         return (dispatch) => {
-            //if image is changed, upload to cloundinary, then fetch to firebase
-            if (imgIsChanged) {
-                let uploadRequest = superagent.post(url)
-                uploadRequest.attach('file', editedRecipe.image).field(params).end((err, resp) => {
-                    if (err) {
-                        alert(err, null)
-                    }
-                    editedRecipe.image = resp.body.secure_url
-                    fbApp
-                        .database()
-                        .ref(path + '/' + editedRecipe.id)
-                        .set(editedRecipe)
-                    dispatch(actions.fetchRecipeList({}))
-                })
-            } else {
-                //if recipe has no image replace it with a placeholder img, fetch to firebase
-                editedRecipe.image = 'http://via.placeholder.com/300x250'
-                fbApp
-                    .database()
-                    .ref(path + '/' + editedRecipe.id)
-                    .set(editedRecipe)
-                dispatch(actions.fetchRecipeList({}))
-
-            }
-
+            console.log('inside actions, deleteRecipe, received id : ' + id)
+            fbApp
+                .database()
+                .ref(path + '/' + id)
+                .remove()
+            dispatch(actions.fetchNewRecipe(editedRecipe, isImgUploaded))
         }
     },
 

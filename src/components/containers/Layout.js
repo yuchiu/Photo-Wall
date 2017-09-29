@@ -41,8 +41,8 @@ const dispatchToProps = (dispatch) => {
     fetchRecipeList: () => {
       dispatch(actions.fetchRecipeList())
     },
-    fetcEditRecipe: (editedRecipe, imgIsChanged) => {
-      dispatch(actions.fetcEditRecipe(editedRecipe, imgIsChanged))
+    fetcEditRecipe: (editedRecipe, imgIsChanged, id) => {
+      dispatch(actions.fetcEditRecipe(editedRecipe, imgIsChanged, id))
     },
     fetchDeleteRecipe: (index) => {
       dispatch(actions.fetchDeleteRecipe(index))
