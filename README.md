@@ -1,6 +1,8 @@
 # My React Template
 
-Recipe and Image Upload App w/ React Redux Firebase
+React, Redux, Firebase
+
+Users can drag and drop image to share their favorite recipe. Images are uploaded to Cloudinary storage and references are stored in the firebase. Uses Redux to manage component's state locally.
 
 ### Check out this site live on this [Link](http://recipe-app.surge.sh/) 
 
