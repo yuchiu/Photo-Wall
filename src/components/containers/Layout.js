@@ -10,7 +10,7 @@ import {connect} from 'react-redux'
 import actions from '../../actions'
 
 class Layout extends React.Component {
-  componentDidMount(){
+  componentDidMount() {
     this
       .props
       .fetchRecipeList()
@@ -20,7 +20,10 @@ class Layout extends React.Component {
     return (
       <Grid>
         <Header fetchNewRecipe ={this.props.fetchNewRecipe}/>
-        <RecipeList recipes = {this.props.recipes} fetchDeleteRecipe={this.props.fetchDeleteRecipe} fetcEditRecipe={this.props.fetcEditRecipe}/>
+        <RecipeList
+          recipes={this.props.recipes}
+          fetchDeleteRecipe={this.props.fetchDeleteRecipe}
+          fetcEditRecipe={this.props.fetcEditRecipe}/>
 
       </Grid>
     )
@@ -38,10 +41,10 @@ const dispatchToProps = (dispatch) => {
     fetchRecipeList: () => {
       dispatch(actions.fetchRecipeList())
     },
-    fetcEditRecipe: (editedRecipe, imgIsChanged)=>{
+    fetcEditRecipe: (editedRecipe, imgIsChanged) => {
       dispatch(actions.fetcEditRecipe(editedRecipe, imgIsChanged))
     },
-    fetchDeleteRecipe : (index)=>{
+    fetchDeleteRecipe: (index) => {
       dispatch(actions.fetchDeleteRecipe(index))
     }
   }

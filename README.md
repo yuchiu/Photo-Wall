@@ -1,6 +1,21 @@
 # My React Template
 
-Recipe Upload App w/ React Redux Firebase
+Recipe and Image Upload App w/ React Redux Firebase
+
+### Check out this site live on this [Link](http://recipe-app.surge.sh/) 
+
+![Demo](https://github.com/yuchiu/https://github.com/yuchiu/React-Redux-Recipe-App/blob/master/demo.gif)
+
+## User Story
+
+- I can create recipes that have names and ingredients.
+
+- I can edit these recipes.
+
+- I can delete these recipes.
+
+- I can upload image for these recipes
+
 
 
 ### Usage 

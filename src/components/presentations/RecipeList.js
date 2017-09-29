@@ -3,7 +3,6 @@ import RecipeItem from './RecipeItem'
 
 class RecipeList extends React.Component {
 
-
   render() {
     return (
       <div>
@@ -13,7 +12,11 @@ class RecipeList extends React.Component {
             .recipes
             .recipes
             .map((recipe, i) => {
-              return <RecipeItem key={i} recipe={recipe} fetchDeleteRecipe= {this.props.fetchDeleteRecipe}  fetcEditRecipe={this.props.fetcEditRecipe}/>
+              return <RecipeItem
+                key={i}
+                recipe={recipe}
+                fetchDeleteRecipe={this.props.fetchDeleteRecipe}
+                fetcEditRecipe={this.props.fetcEditRecipe}/>
             })}
         </div>
       </div>

@@ -36,13 +36,12 @@ const path = Base64.encode(window.location.href) + '/recipes'
 let actions = {
     fetchNewRecipe: (newRecipe) => {
         return (dispatch) => {
-            console.log('inside actions, fetchSave, received : ' + JSON.stringify(newRecipe))
             //if recipe contain image upload to cloudinary, then fetch to firebase
             if (newRecipe.image !== '') {
                 let uploadRequest = superagent.post(url)
                 uploadRequest.attach('file', newRecipe.image).field(params).end((err, resp) => {
                     if (err) {
-                        console.log(err, null)
+                        alert(err, null)
                     }
                     newRecipe.image = resp.body.secure_url
                     newRecipe.id = firebase.database().ref().push().key
@@ -53,9 +52,10 @@ let actions = {
                     dispatch(actions.fetchRecipeList({}))
                 })
             }
-            //if recipe has no image, fetch to firebase
-            else{
+            //if recipe has no image replace it with a placeholder img, fetch to firebase
+            else {
                 newRecipe.id = firebase.database().ref().push().key
+                newRecipe.image = 'http://via.placeholder.com/300x250'
                 fbApp
                     .database()
                     .ref(path + '/' + newRecipe.id)
@@ -66,38 +66,37 @@ let actions = {
         }
     },
 
-    //errr------if recipe has photo uploaded, user can't end the recipe without uploading pic
-    fetcEditRecipe: (editedRecipe,  imgIsChanged) => {
-        console.log('fetched edit recipe '+ editedRecipe,  imgIsChanged)
+    fetcEditRecipe: (editedRecipe, imgIsChanged) => {
         return (dispatch) => {
-            if (imgIsChanged){
-                console.log('inside actions, fetcEditRecipe  image is changed : ' + JSON.stringify(editedRecipe))
-            let uploadRequest = superagent.post(url)
-            uploadRequest.attach('file', editedRecipe.image).field(params).end((err, resp) => {
-                if (err) {
-                    console.log(err, null)
-                }
-                editedRecipe.image = resp.body.secure_url
+            //if image is changed, upload to cloundinary, then fetch to firebase
+            if (imgIsChanged) {
+                let uploadRequest = superagent.post(url)
+                uploadRequest.attach('file', editedRecipe.image).field(params).end((err, resp) => {
+                    if (err) {
+                        alert(err, null)
+                    }
+                    editedRecipe.image = resp.body.secure_url
+                    fbApp
+                        .database()
+                        .ref(path + '/' + editedRecipe.id)
+                        .set(editedRecipe)
+                    dispatch(actions.fetchRecipeList({}))
+                })
+            } else {
+                //if recipe has no image replace it with a placeholder img, fetch to firebase
+                editedRecipe.image = 'http://via.placeholder.com/300x250'
                 fbApp
                     .database()
                     .ref(path + '/' + editedRecipe.id)
                     .set(editedRecipe)
                 dispatch(actions.fetchRecipeList({}))
-            })
-        }else{
-            console.log('in edited Recipe, no image was uploaded to editedRecipe, :'+editedRecipe)
-            editedRecipe.image = ''
-            fbApp
-                .database()
-                .ref(path + '/' + editedRecipe.id)
-                .set(editedRecipe)
-            dispatch(actions.fetchRecipeList({}))
 
-        }
+            }
 
         }
     },
-    //issue with delete, after fetch delete the id of edit shift one place
+
+    //------issue with delete, after fetch delete the id of EditRecipeModal component shift in some cases
     fetchDeleteRecipe: (id) => {
         return (dispatch) => {
             console.log('inside actions, deleteRecipe, received id : ' + id)
@@ -115,19 +114,19 @@ let actions = {
                 .ref(path)
                 .on('value', (snapshot) => {
                     let dataArr = [];
+                    //convert returning object into arrays
                     snapshot.forEach(childSnapshot => {
                         let item = childSnapshot.val();
                         item.key = childSnapshot.key;
                         dataArr.push(item);
                     });
-                    console.log('inside actions, recipe list updated' + JSON.stringify(dataArr))
                     if (dataArr == []) {
                         console.log('data == []')
                         return
                     }
                     dispatch({
                         type: constants.FETCH_RECIPE_LIST,
-                        payload: dataArr
+                        payload: dataArr.reverse()
                     })
                 })
         }
