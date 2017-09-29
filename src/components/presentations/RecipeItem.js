@@ -22,7 +22,7 @@ class RecipeItem extends React.Component {
               <div>
                 <h4 className="card-title display-4 mb-4 mt-4">{recipe.name}</h4>
                 <br/>
-                <p className="card-text lead mb-5">{recipe.ingred}{this.props.recipe.id}</p>
+                <p className="card-text lead mb-5">{recipe.ingred}</p>
                 <div className="row mt-5">
                   <EditRecipeModal
                     recipe={this.props.recipe}

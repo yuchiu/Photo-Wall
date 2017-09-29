@@ -22,7 +22,6 @@ const params = {
 }
 
 /* initialize firebase */
-
 const fbApp = firebase.initializeApp({
     apiKey: "AIzaSyDMqOMvtcfTg-97AF6zLvn-RRXIVGC7Ags",
     authDomain: "real-time-recipe-app.firebaseapp.com",
@@ -34,7 +33,7 @@ const fbApp = firebase.initializeApp({
 const path = Base64.encode(window.location.href) + '/recipes'
 
 let actions = {
-    fetchNewRecipe: (newRecipe, isImgUploaded) => {
+    fetchCreateRecipe: (newRecipe, isImgUploaded) => {
         return (dispatch) => {
             //if recipe contain image upload to cloudinary, then fetch to firebase
             if (isImgUploaded) {
@@ -65,7 +64,7 @@ let actions = {
 
         }
     },
-
+    //delete the editing one, then pass the recipe data to create the clone with updated data
     fetcEditRecipe: (editedRecipe, isImgUploaded, id) => {
 
         return (dispatch) => {
@@ -74,11 +73,10 @@ let actions = {
                 .database()
                 .ref(path + '/' + id)
                 .remove()
-            dispatch(actions.fetchNewRecipe(editedRecipe, isImgUploaded))
+            dispatch(actions.fetchCreateRecipe(editedRecipe, isImgUploaded))
         }
     },
-
-    //------issue with delete, after fetch delete the id of EditRecipeModal component shift in some cases
+    //remove the recipe that match its ID in firebase
     fetchDeleteRecipe: (id) => {
         return (dispatch) => {
             console.log('inside actions, deleteRecipe, received id : ' + id)
@@ -89,6 +87,7 @@ let actions = {
             dispatch(actions.fetchRecipeList({}))
         }
     },
+    //fetch the recipes data from firebase
     fetchRecipeList: () => {
         return (dispatch) => {
             fbApp

@@ -1,5 +1,5 @@
 import React from "react";
-import AddRecipeModal from './AddRecipeModal'
+import CreateRecipeModal from './CreateRecipeModal'
 
 class Header extends React.Component {
   render() {
@@ -11,7 +11,7 @@ class Header extends React.Component {
         </h1>
         <div className="col-md-12 row lead  justify-content-center mb-4">
           <p>Recipes for LIFE! Upload your favorite recipe here!</p>
-          <AddRecipeModal fetchNewRecipe ={this.props.fetchNewRecipe}/>
+          <CreateRecipeModal fetchCreateRecipe ={this.props.fetchCreateRecipe}/>
         </div>
       </div>
     )

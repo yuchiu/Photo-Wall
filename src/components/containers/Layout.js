@@ -4,7 +4,6 @@ import {Grid, Modal} from 'react-bootstrap'
 
 import Header from '../presentations/Header'
 import RecipeList from '../presentations/RecipeList'
-import AddRecipeModal from '../presentations/AddRecipeModal'
 
 import {connect} from 'react-redux'
 import actions from '../../actions'
@@ -19,12 +18,11 @@ class Layout extends React.Component {
   render() {
     return (
       <Grid>
-        <Header fetchNewRecipe ={this.props.fetchNewRecipe}/>
+        <Header fetchCreateRecipe ={this.props.fetchCreateRecipe}/>
         <RecipeList
           recipes={this.props.recipes}
           fetchDeleteRecipe={this.props.fetchDeleteRecipe}
           fetcEditRecipe={this.props.fetcEditRecipe}/>
-
       </Grid>
     )
   }
@@ -35,8 +33,8 @@ const stateToProps = (state) => {
 }
 const dispatchToProps = (dispatch) => {
   return {
-    fetchNewRecipe: (newRecipe) => {
-      dispatch(actions.fetchNewRecipe(newRecipe))
+    fetchCreateRecipe: (newRecipe, isImgUploaded ) => {
+      dispatch(actions.fetchCreateRecipe(newRecipe, isImgUploaded))
     },
     fetchRecipeList: () => {
       dispatch(actions.fetchRecipeList())

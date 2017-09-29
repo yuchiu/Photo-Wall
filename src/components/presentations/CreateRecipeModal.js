@@ -3,7 +3,7 @@ import Dropzone from 'react-dropzone'
 import Modal from 'react-modal';
 import {FormControl} from 'react-bootstrap';
 
-class AddRecipeModal extends React.Component {
+class CreateRecipeModal extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -53,7 +53,7 @@ class AddRecipeModal extends React.Component {
     }
     this
       .props
-      .fetchNewRecipe(this.state.recipe, this.state.isImgUploaded)
+      .fetchCreateRecipe(this.state.recipe, this.state.isImgUploaded)
     this.setState({
       recipe: {
         id: '',
@@ -76,10 +76,11 @@ class AddRecipeModal extends React.Component {
         <Modal
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal}
+          contentLabel='create Recipe'
           style={styles}>
           <h2
             className='display-4 modal-header mb-5'
-            ref={subtitle => this.subtitle = subtitle}>Add New Recipe</h2>
+            ref={subtitle => this.subtitle = subtitle}>Create New Recipe</h2>
 
           <div className="row">
             <div className="col">
@@ -105,10 +106,9 @@ class AddRecipeModal extends React.Component {
                     .handleClick
                     .bind(this)}
                     className="btn btn-danger mr-4"
-                    type="button">Save New Recipe!
+                    type="button">Save!
                   </button>
                   <button className="btn btn-outline-secondary" onClick={this.closeModal}>close</button>
-
                 </div>
               </form>
             </div>
@@ -132,7 +132,6 @@ class AddRecipeModal extends React.Component {
       </div>
     )
   }
-
 }
 const styles = {
   content: {
@@ -146,4 +145,4 @@ const styles = {
   }
 };
 
-export default AddRecipeModal;
+export default CreateRecipeModal;

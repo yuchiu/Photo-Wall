@@ -11,7 +11,6 @@ class EditRecipeModal extends React.Component {
     this.state = {
       modalIsOpen: false,
       isImgUploaded: false,
-      imageIsDropped: 'Drop Image Here',
       recipe: {
         id: recipe.id,
         name: recipe.name,
@@ -39,15 +38,13 @@ class EditRecipeModal extends React.Component {
     newRecipe.image = files[0]
     this.setState({recipe: newRecipe})
     this.setState({isImgUploaded: true})
-    this.setState({imageIsDropped: '✔ Image is saved.'})
   }
-
+  
   handleChange(nameOrIngred, e) {
     let newRecipe = Object.assign({}, this.state.recipe)
     newRecipe[nameOrIngred] = e.target.value
     this.setState({recipe: newRecipe})
   }
-
   handleClick() {
     if (this.state.recipe.name == '' || this.state.recipe.ingred == '') {
       alert('Must fill out the name and ingredient')
@@ -58,17 +55,29 @@ class EditRecipeModal extends React.Component {
       .fetcEditRecipe(this.state.recipe, this.state.isImgUploaded, this.props.recipe.id)
     this.closeModal()
     this.setState({isImgUploaded: false})
-    this.setState({imageIsDropped: 'Drop Image Here'})
+  }
+  checkIfImgUploaded() {
+    if (this.state.isImgUploaded == true) {
+      return (
+        <p className='mt-4 text-center'>✔ Image is saved.</p>
+      )
+    } else {
+
+      return (
+        <p className='mt-4 text-center'>Drop Image Here.</p>
+      )
+    }
   }
 
   render() {
 
     return (
       <div>
-        <button className="ml-3 btn btn-info lead mr-3" onClick={this.openModal}>Edit Recipe{this.props.recipe.id}</button>
+        <button className="ml-3 btn btn-info lead mr-3" onClick={this.openModal}>Edit Recipe</button>
         <Modal
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal}
+          contentLabel='edit Recipe'
           style={styles}>
           <h2
             className='display-4 modal-header mb-5'
@@ -116,8 +125,9 @@ class EditRecipeModal extends React.Component {
               <Dropzone
                 onDrop={this
                 .uploadeFile
-                .bind(this)}>
-                <p className="mt-4 text-center">{this.state.imageIsDropped}</p>
+                .bind(this)}>{this
+                  .checkIfImgUploaded
+                  .bind(this)}
               </Dropzone>
             </div>
           </div>
@@ -125,8 +135,8 @@ class EditRecipeModal extends React.Component {
       </div>
     )
   }
-
 }
+
 const styles = {
   content: {
     top: '50%',
