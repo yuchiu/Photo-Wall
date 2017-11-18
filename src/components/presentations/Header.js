@@ -8,7 +8,7 @@ class Header extends React.Component {
       <div id="header-container">
         <div id="page-title">
           <h1>
-            Photo Wall
+            Photo Wall <i className="fa fa-camera" aria-hidden="true"></i>
           </h1>
           <p>Beautiful, free photos.<br/>
             Gifted by the world’s most generous community of photographers.</p>
