@@ -47,7 +47,7 @@ class EditRecipeModal extends React.Component {
   }
   handleClick() {
     if (this.state.recipe.name == '' || this.state.recipe.ingred == '') {
-      alert('Must fill out the name and ingredient')
+      alert('Must fill out the name and description')
       return
     }
     this
@@ -59,12 +59,12 @@ class EditRecipeModal extends React.Component {
   checkIfImgUploaded() {
     if (this.state.isImgUploaded == true) {
       return (
-        <p className='mt-4 text-center'>✔ Image is saved.</p>
+        <p className='mt-4 text-center'>✔ New Image is Saved.</p>
       )
     } else {
 
       return (
-        <p className='mt-4 text-center'>Drop Image Here.</p>
+        <p className='mt-4 text-center'>Drop New Image Here.</p>
       )
     }
   }
@@ -100,7 +100,7 @@ class EditRecipeModal extends React.Component {
                   .handleChange
                   .bind(this, 'ingred')}
                   type="text"
-                  placeholder="ingredients "/>
+                  placeholder="descriptions "/>
                 <div class="row mx-auto mt-5">
                   <button
                     onClick={this

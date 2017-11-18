@@ -13,44 +13,22 @@ class RecipeItem extends React.Component {
     const recipe = this.props.recipe
 
     return (
-      <div className="card border-secondary mb-3">
-        <div className="card-body">
-          <div className="row">
-            <div className="col ml-2" style={{
-              maxWidth: '48%'
-            }}>
-              <div>
-                <h4 className="card-title display-4 mb-4 mt-4">{recipe.name}</h4>
-                <br/>
-                <p className="card-text lead mb-5">{recipe.ingred}</p>
-                <div className="row mt-5">
-                  <EditRecipeModal
-                    recipe={this.props.recipe}
-                    fetcEditRecipe={this.props.fetcEditRecipe}/>
-                  <button
-                    type="button"
-                    className="btn btn-outline-secondary"
-                    onClick={this
-                    .handleClick
-                    .bind(this)}>Delete</button>
-                </div>
-              </div>
-            </div>
-            <div className="col" style={{
-              maxWidth: '38%'
-            }}>
-              <div className="text-center">
-                <img
-                  src={recipe.image}
-                  style={{
-                  maxHeight: 300
-                }}/>
-              </div>
-            </div>
-          </div>
-
-        </div>
+      <div className="recipe-container">
+      <img className="recipe-img" src={recipe.image}/>
+          <h4 className="recipe-title recipe-ele">{recipe.name}</h4>
+          <br/>
+          <p  className="recipe-description recipe-ele">{recipe.ingred}</p>
+            <EditRecipeModal
+              recipe={this.props.recipe}
+              fetcEditRecipe={this.props.fetcEditRecipe}/>
+            <button
+            className="delete-btn recipe-ele"
+              type="button"
+              onClick={this
+              .handleClick
+              .bind(this)}>Delete</button>
       </div>
+
     )
   }
 }

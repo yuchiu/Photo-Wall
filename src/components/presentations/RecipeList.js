@@ -5,8 +5,7 @@ class RecipeList extends React.Component {
 
   render() {
     return (
-      <div>
-        <div>
+      <div id="recipe-list-container">
           {this
             .props
             .recipes
@@ -18,7 +17,6 @@ class RecipeList extends React.Component {
                 fetchDeleteRecipe={this.props.fetchDeleteRecipe}
                 fetcEditRecipe={this.props.fetcEditRecipe}/>
             })}
-        </div>
       </div>
     )
   }
