@@ -73,7 +73,7 @@ class EditRecipeModal extends React.Component {
 
     return (
       <div>
-        <button className="ml-3 btn btn-info lead mr-3" onClick={this.openModal}>Edit Recipe</button>
+        <button className="ml-3 btn btn-info lead mr-3" onClick={this.openModal}>edit<i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
         <Modal
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal}

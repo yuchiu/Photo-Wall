@@ -3,16 +3,21 @@
     justify-content: center;
     justify-content: flex-start;
     text-align: center;
-    height: 220px;
-    box-shadow: 0 0 10px rgb(90, 90, 90),0 0 3px rgb(51, 51, 51);
+    height: 150px;
+    box-shadow: 0 0 10px rgb(65, 65, 65), 0 0 3px rgb(51, 51, 51), 0 0 20px rgb(119, 119, 119);
+    color: #fff;
+    background-color: #24b598;
+    animation: bg-color 20s infinite;
+    -webkit-animation: bg-color 20s infinite;
 }
 
 #page-title {
-    margin-right: 60vw;
-    h1 {}
-    p {
-        margin-top: 80px;
+    margin-right: 50vw;
+    padding-left: 30px;
+    h1 {
+        font-size: 40px;
     }
+    p {}
 }
 
 #upload-form {
@@ -22,13 +27,21 @@
 #upload-form-btn-group {
     display: flex;
     flex-direction: column;
+    margin: auto 0 auto 20px;
+    ;
+    h2 {
+        margin: 5px;
+    }
 }
 
 #dropzone {
     cursor: pointer;
+    width: 300px;
+    height: 130px;
+    border: 1px rgba(240, 240, 240, 0.8) solid;
+    border-radius: 2px;
     margin: auto;
     p {
-        padding-top:30px;
         text-align: center;
         align-items: center;
         justify-content: center;
@@ -36,32 +49,96 @@
     }
     #pointer {
         width: 40px;
-        height:40px;
+        height: 40px;
         animation: blink 2s infinite;
     }
     img {
-        max-height: 200px;
-        max-width: 200px;
+        max-height: 130px;
+        max-width: 300px;
     }
 }
 
-#upload-name-input {}
+.upload-input {
+    margin: 0 6px;
+    padding: 8px;
+    width: 200px;
+    border-radius: 1px;
+    background: transparent;
+    border: 1px rgba(240, 240, 240, 0.8) solid;
+    margin: 5px;
+    color:#fff;
+    &:focus {
+        outline: none;
+    }
+    &::placeholder {
+        color: rgb(216, 216, 216);
+        opacity:0.8;
+    }
+}
 
-#upload-description-input {}
-
-
-.a-tag-btn.sandy-one{
+#upload-btn {
+    margin: 5px auto;
+    padding: 0.4em 2em;
+    @include cubicTransition;
+    display: block;
+    text-decoration: none;
+    border-radius: 1px;
+    width: 150px;
+    color: #fff7f7;
+    box-shadow: #fff7f7 0 0px 0px 1px inset;
+    font-weight: bold;
     cursor: pointer;
-    @include aTagBtnBaseStyle;
-    @include aTagBtnSandy;
-  border-radius:1px;
-  padding: 5px 10px;
-  text-transform: none;
-  border-color: #383838;
+    &:hover {
+        color: rgba(255, 255, 255, 0.85);
+        box-shadow: #f35d69 0 0px 0px 50px inset;
+        text-shadow: 0 0 5px #fff7f7, 0 0 20px #fff7f7, 0 0 40px #fff7f7, 0 0 10px #fff;
+    }
 }
 
 @keyframes blink {
-    0%   {opacity: 1}
-    50%  {opacity: 0;}
-    100% {opacity: 1;}
+    0% {
+        opacity: 1
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes bg-color {
+    0% {
+        background-color: #24b598;
+    }
+    25% {
+        background-color: #ada2ef;
+    }
+    50% {
+        background-color: #3d91e5;
+    }
+    75% {
+        background-color: #915bc1;
+    }
+    100% {
+        background-color: #24b598;
+    }
+}
+
+@keyframes bg-color {
+    0% {
+        background-color: #24b598;
+    }
+    25% {
+        background-color: #ada2ef;
+    }
+    50% {
+        background-color: #3d91e5;
+    }
+    75% {
+        background-color: #915bc1;
+    }
+    100% {
+        background-color: #24b598;
+    }
 }

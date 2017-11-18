@@ -31,7 +31,7 @@ class UploadSection extends React.Component {
 
   handleClick() {
     if (!this.state.isImgUploaded) {
-      alert('Upload an image')
+      alert("Image can't be blank!")
       return
     }
     this
@@ -55,6 +55,7 @@ class UploadSection extends React.Component {
       <form id="upload-form">
         <Dropzone
           id="dropzone"
+          style={dropzoneStyle}
           onDrop={this
           .uploadeFile
           .bind(this)}>
@@ -63,33 +64,34 @@ class UploadSection extends React.Component {
         </Dropzone>
         <div id="upload-form-btn-group">
           <input
-            id="upload-name-input"
+          className="upload-input"
             value={this.state.recipe.name}
             onChange={this
             .handleChange
             .bind(this, 'name')}
             type="text"
-            placeholder="Name"/>
+            placeholder="name..."/>
           <input
-            id="upload-description-input"
+            className="upload-input"
             value={this.state.recipe.ingred}
             onChange={this
             .handleChange
             .bind(this, 'ingred')}
             type="text"
-            placeholder="descriptions"/>
+            placeholder="descriptions..."/>
           <a
             id="upload-btn"
             onClick={this
             .handleClick
             .bind(this)}
-            className="a-tag-btn sandy-one"
-            type="button">Upload
+            type="button">Upload <i className="fa fa-upload fa-lg" aria-hidden="true"/>
           </a>
         </div>
       </form>
     )
   }
 }
-
+//to placehold the drop zone style for scss file
+const dropzoneStyle={
+}
 export default UploadSection;
