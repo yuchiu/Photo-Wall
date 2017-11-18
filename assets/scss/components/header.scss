@@ -1,18 +1,67 @@
-
-#header-container{
-    background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);
+#header-container {
+    display: flex;
     justify-content: center;
+    justify-content: flex-start;
     text-align: center;
-    height: 400px;
-    h1{
-    }
-    p{
+    height: 220px;
+    box-shadow: 0 0 10px rgb(90, 90, 90),0 0 3px rgb(51, 51, 51);
+}
 
+#page-title {
+    margin-right: 60vw;
+    h1 {}
+    p {
+        margin-top: 80px;
     }
-    #create-btn{
+}
 
-    }
-    #dropzone{
+#upload-form {
+    display: flex;
+}
+
+#upload-form-btn-group {
+    display: flex;
+    flex-direction: column;
+}
+
+#dropzone {
+    cursor: pointer;
+    margin: auto;
+    p {
+        padding-top:30px;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
         margin: auto;
     }
+    #pointer {
+        width: 40px;
+        height:40px;
+        animation: blink 2s infinite;
+    }
+    img {
+        max-height: 200px;
+        max-width: 200px;
+    }
+}
+
+#upload-name-input {}
+
+#upload-description-input {}
+
+
+.a-tag-btn.sandy-one{
+    cursor: pointer;
+    @include aTagBtnBaseStyle;
+    @include aTagBtnSandy;
+  border-radius:1px;
+  padding: 5px 10px;
+  text-transform: none;
+  border-color: #383838;
+}
+
+@keyframes blink {
+    0%   {opacity: 1}
+    50%  {opacity: 0;}
+    100% {opacity: 1;}
 }

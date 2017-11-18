@@ -6,10 +6,13 @@ class Header extends React.Component {
 
     return (
       <div id="header-container">
-        <h1>
-          Recipe Box
-        </h1>
-        <UploadSection  id="create-btn"fetchCreateRecipe ={this.props.fetchCreateRecipe}/>
+        <div id="page-title">
+          <h1>
+            Recipe Box
+          </h1>
+          <p>Share your favorite recipe</p>
+        </div>
+        <UploadSection fetchCreateRecipe ={this.props.fetchCreateRecipe}/>
       </div>
     )
   }

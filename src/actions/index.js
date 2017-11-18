@@ -54,7 +54,7 @@ let actions = {
             //if recipe has no image replace it with a placeholder img, fetch to firebase
             else {
                 newRecipe.id = firebase.database().ref().push().key
-                newRecipe.image = 'http://via.placeholder.com/300x250'
+                newRecipe.image = 'http://via.placeholder.com/300x300'
                 fbApp
                     .database()
                     .ref(path + '/' + newRecipe.id)
