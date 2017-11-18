@@ -28,7 +28,7 @@ class RecipeItem extends React.Component {
               type="button"
               onClick={this
               .handleClick
-              .bind(this)}>Delete</button>
+              .bind(this)}><i className="fa fa-times fa-2x" aria-hidden="true"></i></button>
           </div>
         </div>
       </div>

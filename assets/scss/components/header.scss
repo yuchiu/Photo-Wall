@@ -4,7 +4,6 @@
     justify-content: flex-start;
     text-align: center;
     height: 150px;
-    box-shadow: 0 0 10px rgb(65, 65, 65), 0 0 3px rgb(51, 51, 51), 0 0 20px rgb(119, 119, 119);
     color: #fff;
     background-color: #24b598;
     animation: bg-color 20s infinite;
@@ -12,10 +11,14 @@
 }
 
 #page-title {
-    margin-right: 50vw;
+    width:30vw;
+    min-width:400px;
+    margin-right: 35%;
     padding-left: 30px;
+    text-align: left;
     h1 {
         font-size: 40px;
+        margin:15px 0;
     }
     p {}
 }
@@ -83,15 +86,15 @@
     display: block;
     text-decoration: none;
     border-radius: 1px;
-    width: 150px;
+    width: 155px;
     color: #fff7f7;
     box-shadow: #fff7f7 0 0px 0px 1px inset;
     font-weight: bold;
     cursor: pointer;
     &:hover {
         color: rgba(255, 255, 255, 0.85);
-        box-shadow: #f35d69 0 0px 0px 50px inset;
-        text-shadow: 0 0 5px #fff7f7, 0 0 20px #fff7f7, 0 0 40px #fff7f7, 0 0 10px #fff;
+        box-shadow: #0e9ec2 0 0px 0px 50px inset;
+        text-shadow: 0 0 5px #fff7f7, 0 0 20px #fff7f7, 0 0 40px #fff7f7;
     }
 }
 
@@ -127,18 +130,18 @@
 
 @keyframes bg-color {
     0% {
-        background-color: #24b598;
+        background-color: #61bba9;
     }
     25% {
-        background-color: #ada2ef;
+        background-color: #bcb4f0;
     }
     50% {
-        background-color: #3d91e5;
+        background-color: #8bbbeb;
     }
     75% {
-        background-color: #915bc1;
+        background-color: #a88bc4;
     }
     100% {
-        background-color: #24b598;
+        background-color: #61bba9;
     }
 }

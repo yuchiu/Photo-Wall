@@ -8,9 +8,10 @@ class Header extends React.Component {
       <div id="header-container">
         <div id="page-title">
           <h1>
-            Recipe Box
+            Photo Wall
           </h1>
-          <p>Share your favorite recipe</p>
+          <p>Beautiful, free photos.<br/>
+            Gifted by the world’s most generous community of photographers.</p>
         </div>
         <UploadSection fetchCreateRecipe ={this.props.fetchCreateRecipe}/>
       </div>
