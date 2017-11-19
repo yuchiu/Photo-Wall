@@ -2,21 +2,20 @@
 
 React, Redux, Firebase
 
-Users can drag and drop image to share their favorite recipe. Images are uploaded to Cloudinary storage and references are stored in the firebase. Uses Redux to manage component's state locally.
+Users can drag and drop to share their favorite photo. Images are uploaded to Cloudinary storage and references are stored in the firebase. Uses Redux to manage component's state locally.
 
-### Check out this site live on this [Link](http://recipe-app.surge.sh/) 
+### Check out this site live on this [Link](http://photo-wall.surge.sh/) 
 
-![Demo](https://github.com/yuchiu/React-Redux-Recipe-App/blob/master/demo2.gif)
 
 ## User Story
 
-- I can create recipes that have names and ingredients.
+- I can create photo that have names and description.
 
-- I can edit these recipes.
+- I can edit these photos.
 
-- I can delete these recipes.
+- I can delete these photos.
 
-- I can upload image for these recipes
+- I can upload image for these photos
 
 
 

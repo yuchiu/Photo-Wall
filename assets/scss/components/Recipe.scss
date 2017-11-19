@@ -54,14 +54,14 @@
     }
     .fa-times {
         &:hover {
-            color: rgba(255, 182, 181, 0.8);
+            color: rgb(255, 182, 181);
             text-shadow: 0 0 5px #e9a8a8, 0 0 20px #ff8181;
         }
     }
     .fa-pencil-square-o {
         &:hover {
-            color: rgba(187, 206, 255, 0.8);
-            text-shadow: 0 0 5px #a8bfe9, 0 0 20px #81a3ff;
+            color: rgb(199, 255, 252);
+            text-shadow: 0 0 5px #a8bfe9, 0 0 20px #acc3ff;
         }
     }
 }

@@ -134,6 +134,7 @@ const styles = {
     marginRight: '-50%',
     width: 550,
     transform: 'translate(-50%, -50%)',
+    overflow: 'hidden'
   }
 }
 
