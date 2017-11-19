@@ -92,3 +92,31 @@
     background: transparent;
     margin: 0 20px;
 }
+
+@include maxMediaQueries(1400px) {
+    #recipe-list-container {
+        width: 85vw;
+    }
+    .recipe-container {
+        max-width: 500px;
+        max-height: 250px;
+    }
+    .recipe-img {
+        max-width: 500px;
+        max-height: 250px;
+    }
+}
+
+@include maxMediaQueries(1000px) {
+    #recipe-list-container {
+        width: 100vw;
+    }
+    .recipe-container {
+        max-width: 400px;
+        max-height: 200px;
+    }
+    .recipe-img {
+        max-width: 400px;
+        max-height: 200px;
+    }
+}

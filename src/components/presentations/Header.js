@@ -13,7 +13,7 @@ class Header extends React.Component {
           <p>Beautiful, free photos.<br/>
             Gifted by the world’s most generous community of photographers.</p>
         </div>
-        <UploadSection fetchCreateRecipe ={this.props.fetchCreateRecipe}/>
+          <UploadSection fetchCreateRecipe ={this.props.fetchCreateRecipe}/>
       </div>
     )
   }
