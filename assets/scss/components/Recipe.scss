@@ -2,9 +2,8 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    width:78vw;
+    width: 78vw;
     margin: 20px auto;
-
 }
 
 .recipe-container {
@@ -15,7 +14,7 @@
     line-height: 0;
     overflow: hidden;
     color: white;
-    margin :5px;
+    margin: 5px;
 }
 
 .recipe-ele {
@@ -41,10 +40,29 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: rgba(0, 0, 0, .4);
+    background: rgba(0, 0, 0, .6);
     opacity: 0;
     &:hover {
         opacity: 1;
+        cursor: pointer;
+    }
+    i {
+        &:hover {
+            @include cubicTransition;
+            transform: scale(1.6);
+        }
+    }
+    .fa-times {
+        &:hover {
+            color: rgba(255, 182, 181, 0.8);
+            text-shadow: 0 0 5px #e9a8a8, 0 0 20px #ff8181;
+        }
+    }
+    .fa-pencil-square-o {
+        &:hover {
+            color: rgba(187, 206, 255, 0.8);
+            text-shadow: 0 0 5px #a8bfe9, 0 0 20px #81a3ff;
+        }
     }
 }
 
@@ -62,8 +80,15 @@
 
 .button-group {
     display: flex;
-    margin-top:20px;
+    position: absolute;
+    margin-top: 125px;
 }
 
-.delete-btn {}
-.edit-btn {}
+.recipe-item-btn {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    color: white;
+    background: transparent;
+    margin: 0 20px;
+}

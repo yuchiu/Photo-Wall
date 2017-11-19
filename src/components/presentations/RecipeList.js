@@ -14,6 +14,7 @@ class RecipeList extends React.Component {
               return <RecipeItem
                 key={i}
                 recipe={recipe}
+          fetchRecipeList = {this.props.fetchRecipeList}
                 fetchDeleteRecipe={this.props.fetchDeleteRecipe}
                 fetcEditRecipe={this.props.fetcEditRecipe}/>
             })}

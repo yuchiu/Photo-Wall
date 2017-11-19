@@ -11,7 +11,7 @@ class RecipeItem extends React.Component {
   }
   render() {
     const recipe = this.props.recipe
-
+    console.log(this.props.key)
     return (
       <div className="recipe-container">
         <img className="recipe-img" src={recipe.image}/>
@@ -21,10 +21,11 @@ class RecipeItem extends React.Component {
           <p className="recipe-description recipe-ele">{recipe.ingred}</p>
           <div className="button-group">
             <EditRecipeModal
+          fetchRecipeList = {this.props.fetchRecipeList}
               recipe={this.props.recipe}
               fetcEditRecipe={this.props.fetcEditRecipe}/>
             <button
-              className="delete-btn recipe-ele"
+              className="recipe-item-btn recipe-ele"
               type="button"
               onClick={this
               .handleClick

@@ -21,6 +21,7 @@ class Layout extends React.Component {
         <Header fetchCreateRecipe ={this.props.fetchCreateRecipe}/>
         <RecipeList
           recipes={this.props.recipes}
+          fetchRecipeList = {this.props.fetchRecipeList}
           fetchDeleteRecipe={this.props.fetchDeleteRecipe}
           fetcEditRecipe={this.props.fetcEditRecipe}/>
       </Grid>
