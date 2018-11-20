@@ -1,13 +1,13 @@
-@import './mixin';
-@import './components/header.scss';
-@import './components/recipe.scss';
-@import './components/edit.scss';
-@import url('https://fonts.googleapis.com/css?family=Raleway');
+@import "./mixin";
+@import "./components/header.scss";
+@import "./components/recipe.scss";
+@import "./components/edit.scss";
+@import url("https://fonts.googleapis.com/css?family=Raleway");
 body {
-    margin: 0;
-    font-family: 'Raleway', cursive;
-    height: 100%;
-    min-height: 100vh;
-    @include cubicTransition;
-    background: rgb(248, 248, 248);
+  margin: 0;
+  font-family: "Raleway", cursive;
+  height: 100%;
+  min-height: 100vh;
+  @include cubicTransition;
+  background: rgb(248, 248, 248);
 }
